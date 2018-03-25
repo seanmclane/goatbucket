@@ -1,0 +1,9 @@
+{
+  "name": "goatbucket",
+  "version": "0.1.0",
+  "description": "Wallet for GoatNickels",
+  "main": "index.js",
+  "repository": "https://github.com/seanmclane/goatbucket.git",
+  "author": "Sean McLane",
+  "license": "MIT"
+}
