@@ -5,5 +5,16 @@
   "main": "index.js",
   "repository": "https://github.com/seanmclane/goatbucket.git",
   "author": "Sean McLane",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "lint": "eslint **/*.js"
+  },
+  "devDependencies": {
+    "electron": "^1.8.4",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "^1.11.1"
+  }
 }
