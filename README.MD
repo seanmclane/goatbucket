@@ -1,4 +1,4 @@
-#GoatBucket - A wallet for GoatNickels
+# GoatBucket - A wallet for GoatNickels
 
 ![GoatBucket Screenshot](./pre-alpha.png)
 
