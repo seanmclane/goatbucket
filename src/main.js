@@ -16,9 +16,9 @@ const createWindow = async () => {
     titleBarStyle: 'hiddenInset',
     width: 1200,
     height: 700,
-    minWidth: 400,
+    minWidth: 800,
     minHeight: 600,
-    backgroundColor: 'white', //TODO: set this to main app color
+    backgroundColor: '#3d3d5c', //TODO: set this to main app color
   });
 
   // and load the index.html of the app.

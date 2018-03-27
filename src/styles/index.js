@@ -1,4 +1,4 @@
-import {css} from 'glamor';
+import {css, $} from 'glamor';
 
 css.global('body', {
   margin: 0,
@@ -6,6 +6,7 @@ css.global('body', {
 });
 
 let font = css({
+  color: '#fff',
   fontFamily: 'Lato',
   fontStyle: 'normal',
   fontWeight: 400,
@@ -22,7 +23,64 @@ let body = css({
   width: '100vw',
   height: '100vh',
   minWidth: '400px',
-  minHeight: '400px'
+  minHeight: '400px',
+});
+
+const button = css({
+  border: 'none',
+  padding: '25px 80px',
+  margin: '10px',
+  display: 'inline-block',
+  textTransform: 'uppercase',
+  letterSpacing: '1px',
+  fontWeight: 700,
+  outline: 'none',
+  position: 'relative',
+  borderRadius: '5px',
+  color: '#fff',
+  WebkitTransition: 'none',
+  MozTransition: 'none',
+  Transition: 'none',
+});
+
+export const greenButton = css(
+  button,
+  {
+    boxShadow: '0 6px #009973',
+    background: '#00e6ac',
+  },
+  $(':hover', {
+    boxShadow: '0 4px #009973',
+    top: '2px',
+  }),
+  $(':active', {
+    boxShadow: '0 0 #009973',
+    top: '6px',
+  })
+);
+
+export const blueButton = css(
+  button,
+  {
+    boxShadow: '0 6px #0088cc',
+    background: '#66ccff',
+  },
+  $(':hover', {
+    boxShadow: '0 4px #0088cc',
+    top: '2px',
+  }),
+  $(':active', {
+    boxShadow: '0 0 #0088cc',
+    top: '6px',
+  })
+);
+
+export const centerStyle = css({
+  textAlign: 'center',
+});
+
+export const errorStyle = css({
+  color: 'red',
 });
 
 let combinedStyles = css(font, body);

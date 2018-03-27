@@ -2,20 +2,32 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {updateBalanceRequest} from './WalletActions';
+import {css} from 'glamor';
+import {centerStyle, errorStyle, greenButton, blueButton} from '../styles';
 
-//TODO: load this from local keystore
-const accountId =
-  'goat_04dbb67ae9650ca3258071909f74be5400fe53fc2e5dcc82103020f3aeefeee5f9980c4c05bb8696215458dfa7ddaa1505d2826cab3d246b8930b0694f766a22f8bb63932368c0b12bf80cfaee8a18db1d7ce19df0a84215d20b0bbfbd30d95c25';
+let balanceStyle = css({
+  fontSize: '50px',
+});
+
+let accountStyle = css({
+  maxWidth: '600px',
+  wordWrap: 'break-word',
+  fontWeight: '400',
+});
 
 function Wallet(props) {
   return (
-    <div>
-      <h1>GoatBucket</h1>
-      <h2>The GoatNickels Wallet</h2>
-      <h3>Balance:</h3>
-      <p>{props.wallet.balance / 100000000}</p>
-      <p>{props.wallet.hasErrored ? "true" : "false"}</p>
-      <button onClick={() => props.updateBalanceRequest(accountId)}>Update</button>
+    <div {...centerStyle}>
+      <h2>Your Account</h2>
+      <h1 {...balanceStyle} className={props.wallet.hasErrored ? errorStyle : ''}>{props.wallet.balance / 100000000}</h1>
+      <p {...errorStyle}>{props.wallet.hasErrored ? 'Error retrieving balance' : ''}</p>
+      <h4 className={accountStyle}>{props.wallet.accountId}</h4>
+      <button className={greenButton} onClick={() => props.updateBalanceRequest(props.wallet.accountId)}>
+        Update Balance
+      </button>
+      <button className={blueButton}>
+        Send GoatNickels
+      </button>
     </div>
   );
 }
