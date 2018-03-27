@@ -1,24 +1,18 @@
-import React, {Component} from 'react';
-import {hot} from 'react-hot-loader';
-import store from './AppStore';
-
-import {css, style} from 'glamor';
-import combinedStyles from '../styles';
-
-import Wallet from '../wallet/Wallet';
-import Header from './Header';
+import * as React from 'react';
+import {accountId} from '../utils/config';
 import {startTimer} from '../timer/TimerActions';
 
-import os from 'os';
-import fs from 'fs';
-import path from 'path';
+import combinedStyles from '../styles';
 
-const filePath = os.homedir() + '/.goatnickels/config.json';
+import Header from './Header';
 
-const config = require(filePath);
-const accountId = config.account;
+type Props = {
+  children: React.Node
+};
 
-class App extends Component {
+export default class App extends React.Component<Props> {
+  props: Props;
+
   componentDidMount() {
     store.dispatch(startTimer(accountId));
   }
@@ -27,10 +21,8 @@ class App extends Component {
     return (
       <div {...combinedStyles}>
         <Header />
-        <Wallet store={store} />
+        {this.props.children}
       </div>
     );
   }
 }
-
-export default hot(module)(App);

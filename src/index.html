@@ -5,14 +5,9 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
 </head>
 <body>
-  <div id="App"></div>
+  <div id="root"></div>
 </body>
 
 <script type="application/javascript">localStorage.debug = 'electron-compile:require-hook'</script>
-<script type="text/jsx">
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './app/App'
-ReactDOM.render(<App />, document.getElementById('App'))
-</script>
+<script src="index.js"></script>
 </html>

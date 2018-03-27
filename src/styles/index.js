@@ -27,6 +27,7 @@ let body = css({
 });
 
 const button = css({
+  fontSize: '16px',
   border: 'none',
   padding: '25px 80px',
   margin: '10px',

@@ -1,8 +1,20 @@
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
+import createHistory from 'history/createBrowserHistory';
+import {routerMiddleware} from 'react-router-redux';
 import rootReducer from './reducers';
-import timerMiddleware from '../timer/TimerMiddleware'
+import timerMiddleware from '../timer/TimerMiddleware';
 
-const store = createStore(rootReducer, applyMiddleware(thunk, timerMiddleware));
+export const history = createHistory();
 
-export default store;
+export function configureStore() {
+  const store = createStore(rootReducer, applyMiddleware(thunk, timerMiddleware, routerMiddleware(history)));
+
+  if (module.hot) {
+    module.hot.accept('./reducers', () => {
+      store.replaceReducer(require('./reducers').default);
+    });
+  }
+
+  return store;
+}
