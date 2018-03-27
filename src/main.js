@@ -13,8 +13,12 @@ if (isDevMode) enableLiveReload({strategy: 'react-hmr'});
 const createWindow = async () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    titleBarStyle: 'hiddenInset',
+    width: 1200,
+    height: 700,
+    minWidth: 400,
+    minHeight: 600,
+    backgroundColor: 'white', //TODO: set this to main app color
   });
 
   // and load the index.html of the app.

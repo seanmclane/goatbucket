@@ -63,11 +63,15 @@
     "axios": "^0.18.0",
     "electron-compile": "^6.4.2",
     "electron-devtools-installer": "^2.2.3",
+    "glamor": "^2.20.40",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^4.0.0",
     "react-redux": "^5.0.7",
+    "react-typography": "^0.16.13",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "typography": "^0.16.6",
+    "typography-theme-twin-peaks": "^0.15.11"
   }
 }

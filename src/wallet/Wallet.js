@@ -10,17 +10,18 @@ const accountId =
 function Wallet(props) {
   return (
     <div>
+      <h1>GoatBucket</h1>
+      <h2>The GoatNickels Wallet</h2>
       <h3>Balance:</h3>
       <p>{props.wallet.balance / 100000000}</p>
       <p>{props.wallet.hasErrored ? "true" : "false"}</p>
-      <p>{props.timer.time}</p>
       <button onClick={() => props.updateBalanceRequest(accountId)}>Update</button>
     </div>
   );
 }
 
 function mapStateToProps(state) {
-  return {wallet: state.wallet, timer: state.timer};
+  return {wallet: state.wallet};
 }
 
 function mapDispatchToProps(dispatch) {

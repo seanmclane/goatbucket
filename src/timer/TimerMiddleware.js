@@ -1,4 +1,4 @@
-import {START_TIMER, TICK} from './TimerActions';
+import {START_TIMER} from './TimerActions';
 import {updateBalanceRequest} from '../wallet/WalletActions';
 
 const accountId =
@@ -6,11 +6,11 @@ const accountId =
 
 const timerMiddleware = store => next => action => {
   if (action.type === START_TIMER) {
+    store.dispatch(updateBalanceRequest(accountId));
     setInterval(() => {
       //probably the wrong way to do this but it works
       store.dispatch(updateBalanceRequest(accountId));
-      store.dispatch({type: TICK, currentTime: Date.now()});
-    }, 1000);
+    }, 10000); //is ten seconds right?
   }
   return next(action);
 };
