@@ -61,10 +61,13 @@
     "prettier": "^1.11.1"
   },
   "dependencies": {
+    "asn1.js": "^4.10.1",
     "axios": "^0.18.0",
+    "bn.js": "^4.11.8",
     "electron-compile": "^6.4.2",
     "electron-devtools-installer": "^2.2.3",
     "glamor": "^2.20.40",
+    "jsrsasign": "^8.0.7",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^4.0.0",
