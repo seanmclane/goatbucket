@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
-import {centerStyle, greenButton, blueButton} from '../styles';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import {css} from 'glamor';
 
+import {centerStyle, errorStyle, successStyle, greenButton, blueButton} from '../styles';
+import {sendTransactionRequest, handleToInputChange, handleAmountInputChange} from './TxionActions';
 import {signTransaction} from '../crypto';
-
-signTransaction({
-  to:
-    'goat_04ab1594a3b65e440653b1a54952aee3cb7f5c41cb476f7ecd3ce58dc23cef0923beb45fc275ff4149cd9f0417f8ca885e882b3b68d00bab2988b22f2eaf7f6683ba3e672abd668e5788a8ecb4d055cd024f004ff03db06158f18e5bd02914685a',
-  amount: 123456,
-  sequence: 1,
-});
 
 let fieldStyle = css({
   border: 'none',
@@ -26,16 +22,69 @@ let inputStyle = css({
   borderRadius: '5px',
 });
 
-export default function Txion(props) {
+function Txion(props) {
   return (
     <div {...centerStyle}>
       <h1>Send GoatNickels</h1>
+      <h1 className={props.wallet.hasErrored ? errorStyle : ''}>{props.wallet.isLoading ? "loading..." : props.wallet.balance / 100000000}</h1>
       <fieldset {...fieldStyle}>
-        <input {...inputStyle} placeholder="To" type="text" name="to" id="to" />
-        <input {...inputStyle} placeholder="Amount" type="number" name="amount" id="amount" />
+        <input 
+          {...inputStyle} 
+          placeholder="To" 
+          type="text" 
+          ame="to" 
+          id="to"
+          onChange={(event) => store.dispatch(handleToInputChange(event.target.value))}
+        />
+        <input 
+          {...inputStyle}
+          placeholder="Amount" 
+          type="number" 
+          name="amount" 
+          id="amount"
+          onChange={(event) => store.dispatch(handleAmountInputChange(Number(event.target.value)))} 
+        />
       </fieldset>
       <button className={greenButton}>Validate</button>
-      <button className={blueButton}>Send</button>
+      <button
+        className={blueButton}
+        onClick={() =>
+          handleTransactionRequest({
+            from: props.wallet.accountId,
+            to: props.transactions.to,
+            amount: props.transactions.amount *100000000,
+            sequence: props.wallet.sequence + 1,
+          })
+        }
+      >
+        Send
+      </button>
+      <p {...errorStyle}>{props.transactions.hasErrored ? 'Error sending transaction' : ''}</p>
     </div>
   );
 }
+
+function handleTransactionRequest(payload) {
+  let sig = signTransaction(payload);
+
+  let txion = {
+    from: payload.from,
+    to: payload.to,
+    amount: payload.amount,
+    sequence: payload.sequence,
+    r: sig.r,
+    s: sig.s,
+  };
+
+  console.log(txion);
+  store.dispatch(sendTransactionRequest(txion));
+}
+
+function mapStateToProps(state) {
+  return {
+    wallet: state.wallet,
+    transactions: state.transactions,
+  };
+}
+
+export default connect(mapStateToProps)(Txion);

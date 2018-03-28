@@ -84,6 +84,10 @@ export const errorStyle = css({
   color: 'red',
 });
 
+export const successStyle = css({
+  color: 'green',
+});
+
 let combinedStyles = css(font, body);
 
 export default combinedStyles;

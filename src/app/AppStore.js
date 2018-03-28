@@ -1,6 +1,6 @@
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import createHistory from 'history/createBrowserHistory';
+import createHistory from 'history/createHashHistory';
 import {routerMiddleware} from 'react-router-redux';
 import rootReducer from './reducers';
 import timerMiddleware from '../timer/TimerMiddleware';

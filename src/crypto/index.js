@@ -49,7 +49,7 @@ export function signTransaction(payload) {
   let r = decoded.r.toJSON();
   let s = decoded.s.toJSON();
 
-  return r, s;
+  return {r: r, s: s};
 }
 
 //helper functions
