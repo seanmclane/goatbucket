@@ -30,7 +30,10 @@ export default function txionReducer(state = initialState, action) {
     case SEND_TRANSACTION_SUCCESS:
       return {
         ...state,
-        transactions: state.transactions.push(action.transaction),
+        transactions: [
+          action.transaction,
+          ...state.transactions,
+        ],
         count: state.count + 1,
       };
     case SEND_TRANSACTION_FAILURE:

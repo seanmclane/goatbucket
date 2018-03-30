@@ -3,8 +3,9 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {css} from 'glamor';
 
-import {centerStyle, errorStyle, successStyle, greenButton, blueButton} from '../styles';
+import {centerStyle, errorStyle, successStyle, greenButton} from '../styles';
 import {sendTransactionRequest, handleToInputChange, handleAmountInputChange} from './TxionActions';
+import {addNotification} from '../notification/NotificationActions';
 import {signTransaction} from '../crypto';
 
 let fieldStyle = css({
@@ -20,48 +21,57 @@ let inputStyle = css({
   margin: '20px 0px',
   border: 'none',
   borderRadius: '5px',
+  WebkitAppRegion: 'no-drag',
 });
 
-function Txion(props) {
-  return (
-    <div {...centerStyle}>
-      <h1>Send GoatNickels</h1>
-      <h1 className={props.wallet.hasErrored ? errorStyle : ''}>{props.wallet.isLoading ? "loading..." : props.wallet.balance / 100000000}</h1>
-      <fieldset {...fieldStyle}>
-        <input 
-          {...inputStyle} 
-          placeholder="To" 
-          type="text" 
-          ame="to" 
-          id="to"
-          onChange={(event) => store.dispatch(handleToInputChange(event.target.value))}
-        />
-        <input 
-          {...inputStyle}
-          placeholder="Amount" 
-          type="number" 
-          name="amount" 
-          id="amount"
-          onChange={(event) => store.dispatch(handleAmountInputChange(Number(event.target.value)))} 
-        />
-      </fieldset>
-      <button className={greenButton}>Validate</button>
-      <button
-        className={blueButton}
-        onClick={() =>
-          handleTransactionRequest({
-            from: props.wallet.accountId,
-            to: props.transactions.to,
-            amount: props.transactions.amount *100000000,
-            sequence: props.wallet.sequence + 1,
-          })
-        }
-      >
-        Send
-      </button>
-      <p {...errorStyle}>{props.transactions.hasErrored ? 'Error sending transaction' : ''}</p>
-    </div>
-  );
+class Txion extends Component{
+
+  componentWillUnmount(){
+    store.dispatch(handleToInputChange(''));
+    store.dispatch(handleAmountInputChange(0));
+  }
+
+  render() {
+    let props = this.props;
+
+    return (
+      <div {...centerStyle}>
+        <h1>Send GoatNickels</h1>
+        <h1 className={props.wallet.hasErrored ? errorStyle : ''}>{props.wallet.isLoading ? "loading..." : props.wallet.balance / 100000000}</h1>
+        <fieldset {...fieldStyle}>
+          <input 
+            {...inputStyle} 
+            placeholder="To" 
+            type="text" 
+            ame="to" 
+            id="to"
+            onChange={(event) => store.dispatch(handleToInputChange(event.target.value))}
+          />
+          <input 
+            {...inputStyle}
+            placeholder="Amount" 
+            type="number" 
+            name="amount" 
+            id="amount"
+            onChange={(event) => store.dispatch(handleAmountInputChange(Number(event.target.value)))} 
+          />
+        </fieldset>
+        <button
+          className={greenButton}
+          onClick={() =>
+            handleTransactionRequest({
+              from: props.wallet.accountId,
+              to: props.transactions.to,
+              amount: props.transactions.amount * 100000000,
+              sequence: props.wallet.sequence + 1,
+            })
+          }
+        >
+          Send
+        </button>
+      </div>
+    );
+  }
 }
 
 function handleTransactionRequest(payload) {

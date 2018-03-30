@@ -1,4 +1,5 @@
 import {css, $} from 'glamor';
+import colors from './colors';
 
 css.global('body', {
   margin: 0,
@@ -47,15 +48,15 @@ const button = css({
 export const greenButton = css(
   button,
   {
-    boxShadow: '0 6px #009973',
-    background: '#00e6ac',
+    boxShadow: `0 6px ${colors.darkGreen}`,
+    background: `${colors.green}`,
   },
   $(':hover', {
-    boxShadow: '0 4px #009973',
+    boxShadow: `0 4px ${colors.darkGreen}`,
     top: '2px',
   }),
   $(':active', {
-    boxShadow: '0 0 #009973',
+    boxShadow: `0 0 ${colors.darkGreen}`,
     top: '6px',
   })
 );
@@ -63,15 +64,15 @@ export const greenButton = css(
 export const blueButton = css(
   button,
   {
-    boxShadow: '0 6px #0088cc',
-    background: '#66ccff',
+    boxShadow: `0 6px ${colors.darkBlue}`,
+    background: `${colors.blue}`,
   },
   $(':hover', {
-    boxShadow: '0 4px #0088cc',
+    boxShadow: `0 4px ${colors.darkBlue}`,
     top: '2px',
   }),
   $(':active', {
-    boxShadow: '0 0 #0088cc',
+    boxShadow: `0 0 ${colors.darkBlue}`,
     top: '6px',
   })
 );
@@ -81,11 +82,11 @@ export const centerStyle = css({
 });
 
 export const errorStyle = css({
-  color: 'red',
+  color: `${colors.red}`,
 });
 
 export const successStyle = css({
-  color: 'green',
+  color: `${colors.green}`,
 });
 
 let combinedStyles = css(font, body);

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {node} from '../utils/config';
 
 export const UPDATE_BALANCE_REQUEST = 'UPDATE_BALANCE_REQUEST';
 export const UPDATE_BALANCE_LOADING = 'UPDATE_BALANCE_LOADING';
@@ -29,12 +30,12 @@ export function updateBalanceSuccess(wallet) {
 export function setAccountId(accountId) {
   return {
     type: SET_ACCOUNT_ID,
-    accountId
-  }
+    accountId,
+  };
 }
 
 export function updateBalanceRequest(accountId) {
-  const request = axios.get('http://localhost:3000/api/v1/acct/' + accountId);
+  const request = axios.get('http://' + node + ':3000/api/v1/acct/' + accountId);
 
   return dispatch => {
     dispatch(updateBalanceLoading(true));

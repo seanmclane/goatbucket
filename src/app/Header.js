@@ -33,6 +33,9 @@ export default function Header(props) {
           <NavLink to="/">Wallet</NavLink>
         </h2>
         <h2>
+          <NavLink to="/txionhistory">History</NavLink>
+        </h2>
+        <h2>
           <NavLink to="/txion">Send</NavLink>
         </h2>
       </div>

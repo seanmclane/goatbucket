@@ -25,7 +25,7 @@ function Wallet(props) {
       <p {...errorStyle}>{props.wallet.hasErrored ? 'Error syncing balance' : ''}</p>
       <h4 className={accountStyle}>{props.wallet.accountId}</h4>
       <button className={greenButton} onClick={() => props.updateBalanceRequest(props.wallet.accountId)}>
-        Update Balance
+        Refresh Balance
       </button>
       <button className={blueButton} onClick={() => store.dispatch(push('/txion'))}>
         Send GoatNickels
