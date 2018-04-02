@@ -19,6 +19,7 @@ const createWindow = async () => {
     minWidth: 800,
     minHeight: 600,
     backgroundColor: '#3d3d5c', //TODO: set this to main app color
+    icon: __dirname + '/static/goat-icon.png'
   });
 
   // and load the index.html of the app.
