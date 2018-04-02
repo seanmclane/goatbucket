@@ -6,4 +6,4 @@ You need place to hold your GoatNickels. Put 'em in a bucket!
 
 ## Quick Start Guide
 
-See the GoatBucket Quick Start Guide [here](goatnickels.com/goatbucket-quick-start-guide).
+See the GoatBucket Quick Start Guide [here](goatnickels.com/goat-bucket-quick-start-guide).
