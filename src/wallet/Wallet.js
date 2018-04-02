@@ -21,8 +21,9 @@ function Wallet(props) {
   return (
     <div {...centerStyle}>
       <h1>Your Wallet</h1>
-      <h1 {...balanceStyle} className={props.wallet.hasErrored ? errorStyle : ''}>{props.wallet.isLoading ? "loading..." : props.wallet.balance / 100000000}</h1>
-      <p {...errorStyle}>{props.wallet.hasErrored ? 'Error syncing balance' : ''}</p>
+      <h1 {...balanceStyle} className={props.wallet.hasErrored ? errorStyle : ''}>{props.wallet.isLoading ? "loading..." : props.wallet.balance / 100000000 + ' '}<span style={{fontSize: '28px'}}>{`\ud83d\udc10`}</span></h1>
+      <p {...errorStyle}>{props.wallet.hasErrored ? 'Unable to sync balance or inital account deposit not made' : ''}</p>
+      <h3>Account</h3>
       <h4 className={accountStyle}>{props.wallet.accountId}</h4>
       <button className={greenButton} onClick={() => props.updateBalanceRequest(props.wallet.accountId)}>
         Refresh Balance

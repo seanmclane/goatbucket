@@ -1,7 +1,10 @@
 import crypto from 'crypto';
 import asn1 from 'asn1.js';
 import BN from 'bn.js';
-import {keystore} from '../utils/keystore';
+
+import base64url from 'base64url';
+import {keystore, writeKey} from '../utils/keystore';
+import {writeDefaultConfig} from '../utils/config';
 
 export function signTransaction(payload) {
   let txion = payload.to + 'goat_' + keystore.public_key + payload.amount + payload.sequence;
@@ -72,4 +75,63 @@ function bytesToHex(bytes) {
     hex.push((bytes[i] & 0xf).toString(16));
   }
   return hex.join('');
+}
+
+export async function buildKeyStore() {
+  let key = await generateKey();
+  let pub = await getPublicKey(key).then(data => extractPublicKey(data));
+  let priv = await getPrivateKey(key).then(data => extractPrivateKey(data));
+  let k = {
+    private_key: priv,
+    public_key: pub,
+  };
+  writeKey(k);
+  let accountId = 'goat_' + k.public_key;
+  writeDefaultConfig(accountId)
+  return accountId;
+}
+
+function generateKey() {
+  return window.crypto.subtle.generateKey(
+    {
+      name: 'ECDSA',
+      namedCurve: 'P-384',
+    },
+    true,
+    ['sign', 'verify']
+  );
+}
+
+function getPublicKey(key) {
+  return window.crypto.subtle.exportKey('jwk', key.publicKey);
+}
+
+function extractPublicKey(keydata) {
+  let x = base64url.toBuffer(keydata.x);
+  let y = base64url.toBuffer(keydata.y);
+  let pub = convertXYPubHex(x, y);
+  return pub;
+}
+
+function getPrivateKey(key) {
+  return window.crypto.subtle.exportKey('jwk', key.privateKey);
+}
+
+function extractPrivateKey(keydata) {
+  let d = bytesToHex(base64url.toBuffer(keydata.d));
+  return d;
+}
+
+//copied golang elliptic.Marshal + hex conversion
+function convertXYPubHex(x, y) {
+  let pub = '';
+
+  let byteLen = (384 + 7) >> 3;
+  let b = new Uint8Array(1 + 2 * byteLen);
+  b[0] = 4;
+  b.set(x, 1 + byteLen - x.length);
+  b.set(y, 1 + 2 * byteLen - y.length);
+
+  pub = bytesToHex(b);
+  return pub;
 }

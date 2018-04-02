@@ -30,7 +30,7 @@ export default function Header(props) {
       <h1 {...logoStyle}>GoatBucket</h1>
       <div {...linkStyle}>
         <h2>
-          <NavLink to="/">Wallet</NavLink>
+          <NavLink to="/wallet">Wallet</NavLink>
         </h2>
         <h2>
           <NavLink to="/txionhistory">History</NavLink>

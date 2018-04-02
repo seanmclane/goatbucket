@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {css} from 'glamor';
 
@@ -37,7 +36,7 @@ class Txion extends Component{
     return (
       <div {...centerStyle}>
         <h1>Send GoatNickels</h1>
-        <h1 className={props.wallet.hasErrored ? errorStyle : ''}>{props.wallet.isLoading ? "loading..." : props.wallet.balance / 100000000}</h1>
+        <h1 className={props.wallet.hasErrored ? errorStyle : ''}>{props.wallet.isLoading ? "loading..." : props.wallet.balance / 100000000 + ' '}<span style={{fontSize: '22px'}}>{`\ud83d\udc10`}</span></h1>
         <fieldset {...fieldStyle}>
           <input 
             {...inputStyle} 
@@ -58,14 +57,14 @@ class Txion extends Component{
         </fieldset>
         <button
           className={greenButton}
-          onClick={() =>
+          onClick={() => 
             handleTransactionRequest({
               from: props.wallet.accountId,
               to: props.transactions.to,
               amount: props.transactions.amount * 100000000,
               sequence: props.wallet.sequence + 1,
             })
-          }
+        }
         >
           Send
         </button>

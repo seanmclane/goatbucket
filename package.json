@@ -63,6 +63,7 @@
   "dependencies": {
     "asn1.js": "^4.10.1",
     "axios": "^0.18.0",
+    "base64url": "^2.0.0",
     "bn.js": "^4.11.8",
     "electron-compile": "^6.4.2",
     "electron-devtools-installer": "^2.2.3",

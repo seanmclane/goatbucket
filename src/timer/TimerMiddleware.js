@@ -8,7 +8,7 @@ const timerMiddleware = store => next => action => {
     setInterval(() => {
       //probably the wrong way to do this but it works
       store.dispatch(updateBalanceRequest(action.accountId));
-    }, 8000);
+    }, 5000);
   }
   next(action);
 };

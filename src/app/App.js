@@ -15,7 +15,10 @@ export default class App extends React.Component<Props> {
   props: Props;
 
   componentDidMount() {
-    store.dispatch(startTimer(accountId));
+    if (accountId !== ''){
+      store.dispatch(startTimer(accountId));
+    }
+    console.log(accountId);
   }
 
   render() {

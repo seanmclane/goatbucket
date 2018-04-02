@@ -7,7 +7,7 @@ You need place to hold your GoatNickels. Put 'em in a bucket!
 ## Quick Start Guide
 
 ### Download the app
-Get the desktop app for your OS [here](https://goatnickels.com/goatbucket).
+Get the desktop app for your OS [here](https://goatnickels.com/download).
 
 ### Creating an account
 Upon startup, you will be prompted to make an account. This sets up a new account in the app and creates a file at `~/.goatnickels/keystore.json`. **Make a backup of this file!** If you lose your key, you will not be able to recover GoatNickels in the account.
