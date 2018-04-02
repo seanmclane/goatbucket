@@ -24,6 +24,11 @@ export function readConfig(){
 export {accountId, node, hasConfig};
 
 export function writeConfig(config) {
+  const dir = os.homedir() + '/.goatnickels/';
+  if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+  }
+
   fs.writeFile(filePath, JSON.stringify(config), (err) => {
     if (err) {
       return console.log(err);

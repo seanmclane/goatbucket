@@ -22,6 +22,11 @@ export function readKey() {
 export {keystore, hasKey};
 
 export function writeKey(key) {
+  const dir = os.homedir() + '/.goatnickels/';
+  if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+  }
+  
   fs.writeFile(filePath, JSON.stringify(key), (err) => {
     if (err) {
       return console.log(err);
