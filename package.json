@@ -1,5 +1,5 @@
 {
-  "name": "goatbucket",
+  "name": "GoatBucket",
   "version": "0.1.0",
   "description": "Wallet for GoatNickels",
   "main": "src/main.js",

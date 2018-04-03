@@ -33,7 +33,7 @@ export default function Header(props) {
           <NavLink to="/wallet">Wallet</NavLink>
         </h2>
         <h2>
-          <NavLink to="/txionhistory">History</NavLink>
+          <NavLink to="/wallet">History</NavLink>
         </h2>
         <h2>
           <NavLink to="/txion">Send</NavLink>
