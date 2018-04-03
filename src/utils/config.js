@@ -41,7 +41,7 @@ export function writeConfig(config) {
 export function writeDefaultConfig(accountId) {
   writeConfig({
     directory: os.homedir() + '/.goatnickels/',
-    nodes: ['localhost'],
+    nodes: ['s1.goatnickels.com', 's2.goatnickels.com', 's3.goatnickels.com'],
     account: accountId,
   })
 }
